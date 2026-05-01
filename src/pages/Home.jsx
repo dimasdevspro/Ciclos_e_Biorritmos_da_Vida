@@ -94,6 +94,11 @@ export default function Home() {
       return;
     }
 
+    const formatarDataParaISO = (dataBR) => {
+      const [dia, mes, ano] = dataBR.split("/");
+      return `${ano}-${mes}-${dia}`;
+    };
+
     try {
       const res = await fetch(
         "https://ciclosebiorritmosdavidabackend.vercel.app/calcular",
@@ -147,11 +152,6 @@ export default function Home() {
       const dataLua = await resLua.json();
 
       setLua(dataLua);
-
-      const formatarDataParaISO = (dataBR) => {
-        const [dia, mes, ano] = dataBR.split("/");
-        return `${ano}-${mes}-${dia}`;
-      };
     } catch (error) {
       console.error("Erro ao calcular:", error);
       alert(
