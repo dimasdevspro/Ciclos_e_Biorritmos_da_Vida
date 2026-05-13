@@ -661,7 +661,7 @@ export default function Sobre() {
             </li>
             <li>
               <a
-                href="https://www.amazon.com/Cambridge-Illustrated-History-Astronomy-Michael/dp/0521411580"
+                href="https://www.proquest.com/openview/c7f81f31a04b23307c7877211468874b/1?pq-origsite=gscholar&cbl=1818157"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:text-blue-800 underline"
