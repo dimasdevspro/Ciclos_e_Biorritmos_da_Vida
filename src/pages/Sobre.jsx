@@ -530,57 +530,6 @@ export default function Sobre() {
           algo muito antigo: olhar novamente para o céu e talvez perceber que os
           ritmos da Natureza continuam presentes, silenciosamente, acima de nós.
         </p>
-        <p className="mb-4">
-          Aplicativo sem fins lucrativos. Desenvolvido segundo as informações
-          adquiridas nas seguintes bibliografias:
-        </p>
-
-        <ul className="list-disc pl-6 space-y-2">
-          <li>
-            LEWIS, H. SPENCER. F.R.C. Ph. D.. Autodomínio e o Destino com os
-            Ciclos da Vida. Revisado e Atualizado. 10ª ed. AMORC - Ordem
-            Rosacruz. Curitiba - PR. 2010.
-          </li>
-          <li>
-            MORALES, P. RAÚL. F.R.C. Ritmos Básicos da Vida. 1ª ed. AMORC -
-            Ordem Rosacruz. Curitiba - PR. 1996.
-          </li>
-          <li>
-            NEUGEBAUER, OTTO. The Exact Sciences in Antiquity. 2ª ed. Dover
-            Publications. New York. 1969.
-          </li>
-          <li>
-            KUHN, THOMAS S.. The Copernican Revolution: Planetary Astronomy in
-            the Development of Western Thought. Harvard University Press.
-            Cambridge - Massachusetts. 1957.
-          </li>
-          <li>
-            VAN DER WAERDEN, B. L.. Science Awakening II: The Birth of
-            Astronomy. Oxford University Press. Oxford. 1974.
-          </li>
-          <li>
-            PINGREE, DAVID. Astronomy and Astrology in India and Iran. Isis
-            Journal / Historical Studies of the Physical Sciences.
-          </li>
-          <li>
-            BURKERT, WALTER. Lore and Science in Ancient Pythagoreanism. Harvard
-            University Press. Cambridge - Massachusetts. 1972.
-          </li>
-          <li>
-            ROCHBERG, FRANCESCA. The Heavenly Writing: Divination, Horoscopy,
-            and Astronomy in Mesopotamian Culture. Cambridge University Press.
-            Cambridge. 2004.
-          </li>
-          <li>
-            EVANS, JAMES. The History and Practice of Ancient Astronomy. Oxford
-            University Press. New York. 1998.
-          </li>
-          <li>
-            HOSKIN, MICHAEL. The Cambridge Illustrated History of Astronomy.
-            Cambridge University Press. Cambridge. 1997.
-          </li>
-        </ul>
-
         <p className="mt-4">
           Todos os cálculos de relação planeta, dia e hora são de propriedade da
           Ordem Rosacruz AMORC - Antiga e Mística Ordem Rosae Crucis. Jurisdição
@@ -591,6 +540,62 @@ export default function Sobre() {
           descrição de cálculo, de dias e horários oportunos e não oportunos,
           por favor, consulte os livros da AMORC, par maiores detalhes.
         </p>
+
+        <hr className="my-6 border-blue-200" />
+
+        <section className="mb-6">
+          <h2 className="text-xl font-semibold mb-2">Referências</h2>
+          <p className="mb-4">
+            Aplicativo sem fins lucrativos. Desenvolvido segundo as informações
+            adquiridas nas seguintes bibliografias:
+          </p>
+
+          <ul className="list-disc pl-6 space-y-2">
+            <li>
+              LEWIS, H. SPENCER. F.R.C. Ph. D.. Autodomínio e o Destino com os
+              Ciclos da Vida. Revisado e Atualizado. 10ª ed. AMORC - Ordem
+              Rosacruz. Curitiba - PR. 2010.
+            </li>
+            <li>
+              MORALES, P. RAÚL. F.R.C. Ritmos Básicos da Vida. 1ª ed. AMORC -
+              Ordem Rosacruz. Curitiba - PR. 1996.
+            </li>
+            <li>
+              NEUGEBAUER, OTTO. The Exact Sciences in Antiquity. 2ª ed. Dover
+              Publications. New York. 1969.
+            </li>
+            <li>
+              KUHN, THOMAS S.. The Copernican Revolution: Planetary Astronomy in
+              the Development of Western Thought. Harvard University Press.
+              Cambridge - Massachusetts. 1957.
+            </li>
+            <li>
+              VAN DER WAERDEN, B. L.. Science Awakening II: The Birth of
+              Astronomy. Oxford University Press. Oxford. 1974.
+            </li>
+            <li>
+              PINGREE, DAVID. Astronomy and Astrology in India and Iran. Isis
+              Journal / Historical Studies of the Physical Sciences.
+            </li>
+            <li>
+              BURKERT, WALTER. Lore and Science in Ancient Pythagoreanism.
+              Harvard University Press. Cambridge - Massachusetts. 1972.
+            </li>
+            <li>
+              ROCHBERG, FRANCESCA. The Heavenly Writing: Divination, Horoscopy,
+              and Astronomy in Mesopotamian Culture. Cambridge University Press.
+              Cambridge. 2004.
+            </li>
+            <li>
+              EVANS, JAMES. The History and Practice of Ancient Astronomy.
+              Oxford University Press. New York. 1998.
+            </li>
+            <li>
+              HOSKIN, MICHAEL. The Cambridge Illustrated History of Astronomy.
+              Cambridge University Press. Cambridge. 1997.
+            </li>
+          </ul>
+        </section>
       </section>
     </div>
   );
