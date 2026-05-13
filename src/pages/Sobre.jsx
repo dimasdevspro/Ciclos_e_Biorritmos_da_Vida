@@ -581,7 +581,7 @@ export default function Sobre() {
             resumos acadêmicos, catálogos, análises, artigos, enciclopédias e
             discussões sobre essas obras:
           </p>
-          <ul>
+          <ul className="list-disc pl-6 space-y-2">
             <li>
               <a
                 href="https://old.maa.org/press/maa-reviews/the-exact-sciences-in-antiquity?utm_source=chatgpt.com"
