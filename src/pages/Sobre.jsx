@@ -552,47 +552,123 @@ export default function Sobre() {
 
           <ul className="list-disc pl-6 space-y-2">
             <li>
-              LEWIS, H. SPENCER. F.R.C. Ph. D.. Autodomínio e o Destino com os
-              Ciclos da Vida. Revisado e Atualizado. 10ª ed. AMORC - Ordem
-              Rosacruz. Curitiba - PR. 2010.
+              <a
+                href="https://www.ordemrosacruz.org.br/br/autodominio-e-o-destino-com-os-ciclos-da-vida-harvey-spencer-lewis"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 underline"
+              >
+                LEWIS, H. SPENCER. F.R.C. Ph. D.. Autodomínio e o Destino com os
+                Ciclos da Vida. Revisado e Atualizado. 10ª ed. AMORC - Ordem
+                Rosacruz. Curitiba - PR. 2010.
+              </a>
             </li>
             <li>
-              MORALES, P. RAÚL. F.R.C. Ritmos Básicos da Vida. 1ª ed. AMORC -
-              Ordem Rosacruz. Curitiba - PR. 1996.
+              <a
+                href="https://www.ordemrosacruz.org.br/br/ritmos-basicos-da-vida-pedro-raul-morales"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 underline"
+              >
+                MORALES, P. RAÚL. F.R.C. Ritmos Básicos da Vida. 1ª ed. AMORC -
+                Ordem Rosacruz. Curitiba - PR. 1996.
+              </a>
+            </li>
+            <p className="mb-4">
+              Obras ao qual a IA tomou referência durante o treinamento do
+              modelo, havendo contato com uma enorme quantidade de textos
+              públicos, resumos acadêmicos, catálogos, análises, artigos,
+              enciclopédias e discussões sobre essas obras:
+            </p>
+            <li>
+              <a
+                href="https://old.maa.org/press/maa-reviews/the-exact-sciences-in-antiquity?utm_source=chatgpt.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 underline"
+              >
+                NEUGEBAUER, OTTO. The Exact Sciences in Antiquity. 2ª ed. Dover
+                Publications. New York. 1969.
+              </a>
             </li>
             <li>
-              NEUGEBAUER, OTTO. The Exact Sciences in Antiquity. 2ª ed. Dover
-              Publications. New York. 1969.
+              <a
+                href="https://en.wikipedia.org/wiki/The_Copernican_Revolution_(book)?utm_source=chatgpt.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 underline"
+              >
+                KUHN, THOMAS S.. The Copernican Revolution: Planetary Astronomy
+                in the Development of Western Thought. Harvard University Press.
+                Cambridge - Massachusetts. 1957.
+              </a>
             </li>
             <li>
-              KUHN, THOMAS S.. The Copernican Revolution: Planetary Astronomy in
-              the Development of Western Thought. Harvard University Press.
-              Cambridge - Massachusetts. 1957.
+              <a
+                href="https://vdoc.pub/documents/science-awakening-ii-the-birth-of-astronomy-47aurd4eg650"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 underline"
+              >
+                VAN DER WAERDEN, B. L.. Science Awakening II: The Birth of
+                Astronomy. Oxford University Press. Oxford. 1974.
+              </a>
             </li>
             <li>
-              VAN DER WAERDEN, B. L.. Science Awakening II: The Birth of
-              Astronomy. Oxford University Press. Oxford. 1974.
+              <a
+                href="https://www.jstor.org/stable/228540?searchText=Astronomy%20and%20Astrology%20in%20India%20and%20Iran.&searchUri=%2Faction%2FdoBasicSearch%3FQuery%3DAstronomy%2Band%2BAstrology%2Bin%2BIndia%2Band%2BIran.%26so%3Drel&ab_segments=0%2Fbasic_search_gsv2%2Fcontrol&refreqid=fastly-default%3A7acc0f1976d464b11b3f0222c2027146"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 underline"
+              >
+                PINGREE, DAVID. Astronomy and Astrology in India and Iran. Isis
+                Journal / Historical Studies of the Physical Sciences.
+              </a>
             </li>
             <li>
-              PINGREE, DAVID. Astronomy and Astrology in India and Iran. Isis
-              Journal / Historical Studies of the Physical Sciences.
+              <a
+                href="https://archive.org/details/walter-burkert-lore-and-science-in-ancient-pythagoreanism/mode/2up"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 underline"
+              >
+                BURKERT, WALTER. Lore and Science in Ancient Pythagoreanism.
+                Harvard University Press. Cambridge - Massachusetts. 1972.
+              </a>
             </li>
             <li>
-              BURKERT, WALTER. Lore and Science in Ancient Pythagoreanism.
-              Harvard University Press. Cambridge - Massachusetts. 1972.
+              <a
+                href="https://www.researchgate.net/publication/26872170_The_Heavenly_Writing_Divination_Horoscopy_and_Astronomy_in_Mesopotamian_Culture_by_Francesca_Rochberg"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 underline"
+              >
+                ROCHBERG, FRANCESCA. The Heavenly Writing: Divination,
+                Horoscopy, and Astronomy in Mesopotamian Culture. Cambridge
+                University Press. Cambridge. 2004.
+              </a>
             </li>
             <li>
-              ROCHBERG, FRANCESCA. The Heavenly Writing: Divination, Horoscopy,
-              and Astronomy in Mesopotamian Culture. Cambridge University Press.
-              Cambridge. 2004.
+              <a
+                href="https://academic.oup.com/book/61753"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 underline"
+              >
+                EVANS, JAMES. The History and Practice of Ancient Astronomy.
+                Oxford University Press. New York. 1998.
+              </a>
             </li>
             <li>
-              EVANS, JAMES. The History and Practice of Ancient Astronomy.
-              Oxford University Press. New York. 1998.
-            </li>
-            <li>
-              HOSKIN, MICHAEL. The Cambridge Illustrated History of Astronomy.
-              Cambridge University Press. Cambridge. 1997.
+              <a
+                href="https://www.amazon.com/Cambridge-Illustrated-History-Astronomy-Michael/dp/0521411580"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 underline"
+              >
+                HOSKIN, MICHAEL. The Cambridge Illustrated History of Astronomy.
+                Cambridge University Press. Cambridge. 1997.
+              </a>
             </li>
           </ul>
         </section>
