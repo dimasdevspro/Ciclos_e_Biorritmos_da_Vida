@@ -385,17 +385,6 @@ export default function Home() {
                                 : "N/A"}
                             </td>
                           </tr>
-
-                          <tr>
-                            <td className="py-2">
-                              ✨ Constelações visíveis no Horizonte
-                            </td>
-                            <td>
-                              {ceu?.constelacoesVisiveis?.length > 0
-                                ? ceu.constelacoesVisiveis.join(", ")
-                                : "N/A"}
-                            </td>
-                          </tr>
                         </tbody>
                       </table>
                     </div>
