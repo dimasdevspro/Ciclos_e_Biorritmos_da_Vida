@@ -278,13 +278,11 @@ export default function Home() {
               <h2 className="mt-6 font-semibold text-center">
                 🔭 Céu atual (Astronomia)
               </h2>
-              <div className="grid grid-cols-2 gap-4 mt-4">
-                {/* Céu */}
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                {/* 🌍 Planetas */}
                 <div className="p-4 bg-blue-200 rounded-xl shadow">
-                  <p className="font-bold">
-                    {" "}
-                    🌍 Planetas visíveis no Horizonte
-                  </p>
+                  <p className="font-bold">🪐 Planetas visíveis no Horizonte</p>
 
                   {!ceu && <p>Carregando...</p>}
 
@@ -299,8 +297,8 @@ export default function Home() {
                   ) : null}
                 </div>
 
-                {/* Lua */}
-                <div className="mt-4 p-4 bg-blue-200 rounded-xl shadow">
+                {/* 🌙 Lua */}
+                <div className="p-4 bg-blue-200 rounded-xl shadow">
                   <p className="font-bold">🌙 Lua</p>
 
                   {lua ? (
@@ -308,29 +306,99 @@ export default function Home() {
                       <p>
                         <strong>Fase:</strong> {lua.fase}
                       </p>
+
                       <p>
                         <strong>Iluminação:</strong>{" "}
                         {(lua.iluminacao * 100).toFixed(0)}%
                       </p>
+
+                      {lua.moonrise && (
+                        <p>
+                          <strong>Nascer:</strong> {lua.moonrise}
+                        </p>
+                      )}
+
+                      {lua.moonset && (
+                        <p>
+                          <strong>Ocaso:</strong> {lua.moonset}
+                        </p>
+                      )}
                     </>
                   ) : (
                     <p>Carregando...</p>
                   )}
                 </div>
 
-                {/* Constelação dominante */}
-                <div className="mt-4 p-4 bg-blue-200 rounded-xl shadow">
-                  <p className="font-bold">🌌 Constelação Dominante - Zênite</p>
-                  {ceu?.constelacaoDominante && (
-                    <p>
-                      <strong>Nome:</strong> {ceu.constelacaoDominante || "N/A"}
-                    </p>
-                  )}
-                  {ceu?.constelacaoAbreviacao && (
-                    <p>
-                      <strong>Abreviação:</strong>{" "}
-                      {ceu.constelacaoAbreviacao || "N/A"}
-                    </p>
+                {/* 🌌 Fenômenos Astronômicos */}
+                <div className="md:col-span-2 p-4 bg-blue-200 rounded-xl shadow">
+                  <p className="font-bold text-lg mb-4">
+                    🌌 Fenômenos Astronômicos do Céu Atual
+                  </p>
+
+                  {!ceu ? (
+                    <p>Carregando...</p>
+                  ) : (
+                    <div className="overflow-x-auto">
+                      <table className="w-full border-collapse">
+                        <thead>
+                          <tr className="border-b border-blue-400">
+                            <th className="text-left py-2">Fenômeno</th>
+                            <th className="text-left py-2">Constelação</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          <tr className="border-b border-blue-300">
+                            <td className="py-2">🌌 Constelação do Zênite</td>
+                            <td>{ceu?.zenite || "N/A"}</td>
+                          </tr>
+
+                          <tr className="border-b border-blue-300">
+                            <td className="py-2">🌅 Horizonte Leste</td>
+                            <td>{ceu?.horizonteLeste || "N/A"}</td>
+                          </tr>
+
+                          <tr className="border-b border-blue-300">
+                            <td className="py-2">🌇 Horizonte Oeste</td>
+                            <td>{ceu?.horizonteOeste || "N/A"}</td>
+                          </tr>
+
+                          <tr className="border-b border-blue-300">
+                            <td className="py-2">☀️ Constelação Culminante</td>
+                            <td>{ceu?.culminante || "N/A"}</td>
+                          </tr>
+
+                          <tr className="border-b border-blue-300">
+                            <td className="py-2">
+                              🍂 Constelação sazonal dominante
+                            </td>
+                            <td>{ceu?.sazonal || "N/A"}</td>
+                          </tr>
+
+                          <tr className="border-b border-blue-300">
+                            <td className="py-2">
+                              🧭 Constelações circumpolares - fixas
+                            </td>
+                            <td>
+                              {ceu?.circumpolares?.length > 0
+                                ? ceu.circumpolares.join(", ")
+                                : "N/A"}
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td className="py-2">
+                              ✨ Constelações visíveis no Horizonte
+                            </td>
+                            <td>
+                              {ceu?.constelacoesVisiveis?.length > 0
+                                ? ceu.constelacoesVisiveis.join(", ")
+                                : "N/A"}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   )}
                 </div>
               </div>
