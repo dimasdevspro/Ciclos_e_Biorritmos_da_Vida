@@ -8,8 +8,8 @@ export default function Sobre() {
           Astronomia, Ritmos da Vida e Tradição
         </h2>
         <p className="mb-4">
-          O aplicativo “Ciclos e Biorritmos da Vida” nasceu da tentativa de unir
-          duas perspectivas que normalmente aparecem separadas: a tradição
+          O *aplicativo “Ciclos e Biorritmos da Vida” nasceu da tentativa de
+          unir duas perspectivas que normalmente aparecem separadas: a tradição
           simbólica antiga e a astronomia observacional moderna. Em vez de
           tratar esses campos como inimigos, o projeto procura compreendê-los
           como expressões diferentes de uma mesma busca humana: a tentativa de
@@ -48,6 +48,12 @@ export default function Sobre() {
             Qual é a importância filosófica de observar novamente o céu real.
           </li>
         </ol>
+        <p className="mb-4 text-sm text-black-600">
+          *Projeto independente dedicado à astronomia cultural, simbolismo
+          celeste e tradições históricas associadas às estrelas e constelações.
+          A monetização eventual do projeto ajuda a manter infraestrutura,
+          pesquisa e desenvolvimento da plataforma.
+        </p>
       </section>
 
       <hr className="my-6 border-blue-200" />

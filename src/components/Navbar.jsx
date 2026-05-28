@@ -13,8 +13,14 @@ export default function Navbar() {
           <Link to="/" className="hover:text-blue-500">
             Home
           </Link>
+          <Link to="/blog" className="hover:text-blue-500">
+            Blog
+          </Link>
           <Link to="/sobre" className="hover:text-blue-500">
             Sobre
+          </Link>
+          <Link to="/contato" className="hover:text-blue-500">
+            Contato
           </Link>
         </nav>
       </header>
@@ -27,8 +33,14 @@ export default function Navbar() {
           <Link to="/" className="hover:text-blue-500">
             Home
           </Link>
+          <Link to="/blog" className="hover:text-blue-500">
+            Blog
+          </Link>
           <Link to="/sobre" className="hover:text-blue-500">
             Sobre
+          </Link>
+          <Link to="/contato" className="hover:text-blue-500">
+            Contato
           </Link>
         </nav>
       </header>
