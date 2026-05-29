@@ -72,7 +72,7 @@ const CustomTooltip = ({ active, payload }) => {
   return null;
 };
 
-export default function Home() {
+export default function Calculator() {
   const [nome, setNome] = useState("");
   const [nascimento, setNascimento] = useState("");
   const [resultado, setResultado] = useState(null);

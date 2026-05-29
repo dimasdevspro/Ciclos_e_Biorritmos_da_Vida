@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "../pages/Home";
+import Calculadora from "../pages/Calculator";
 import Blog from "../pages/Blog";
 import Sobre from "../pages/Sobre";
 import Contato from "../pages/Contato";
@@ -12,9 +12,9 @@ export default function PublicRoutes() {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/blog" element={<Blog />} />
+        <Route path="/calculadora" element={<Calculadora />} />
         <Route path="/sobre" element={<Sobre />} />
+        <Route path="/blog" element={<Blog />} />
         <Route path="/contato" element={<Contato />} />
         <Route path="/privacidade" element={<Privacidade />} />
       </Routes>

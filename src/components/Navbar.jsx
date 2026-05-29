@@ -10,14 +10,14 @@ export default function Navbar() {
         </h1>
 
         <nav className="flex justify-center gap-4 mt-3 text-lg">
-          <Link to="/" className="hover:text-blue-500">
-            Home
+          <Link to="/sobre" className="hover:text-blue-500">
+            Sobre
+          </Link>
+          <Link to="/calculadora" className="hover:text-blue-500">
+            Calculadora
           </Link>
           <Link to="/blog" className="hover:text-blue-500">
             Blog
-          </Link>
-          <Link to="/sobre" className="hover:text-blue-500">
-            Sobre
           </Link>
           <Link to="/contato" className="hover:text-blue-500">
             Contato
@@ -30,14 +30,14 @@ export default function Navbar() {
         <h1 className="font-bold text-4xl">Ciclos e Biorritmos da Vida</h1>
 
         <nav className="flex gap-6 text-xl">
-          <Link to="/" className="hover:text-blue-500">
-            Home
+          <Link to="/sobre" className="hover:text-blue-500">
+            Sobre
+          </Link>
+          <Link to="/calculadora" className="hover:text-blue-500">
+            Calculadora
           </Link>
           <Link to="/blog" className="hover:text-blue-500">
             Blog
-          </Link>
-          <Link to="/sobre" className="hover:text-blue-500">
-            Sobre
           </Link>
           <Link to="/contato" className="hover:text-blue-500">
             Contato
