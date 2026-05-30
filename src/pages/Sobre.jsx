@@ -50,9 +50,9 @@ export default function Sobre() {
         </ol>
         <p className="mb-4 text-sm text-black-600">
           *Projeto independente dedicado à astronomia cultural, simbolismo
-          celeste e tradições históricas associadas às estrelas e constelações.
-          A monetização eventual do projeto ajuda a manter infraestrutura,
-          pesquisa e desenvolvimento da plataforma.
+          celeste e tradições históricas associadas às estrelas, constelações,
+          planetas e satélites. A monetização eventual do projeto ajuda a manter
+          infraestrutura, pesquisa e desenvolvimento da plataforma.
         </p>
       </section>
 
@@ -552,8 +552,8 @@ export default function Sobre() {
         <section className="mb-6">
           <h2 className="text-xl font-semibold mb-2">Referências</h2>
           <p className="mb-4">
-            Aplicativo sem fins lucrativos. Desenvolvido segundo as informações
-            adquiridas nas seguintes bibliografias:
+            Desenvolvido segundo as informações adquiridas nas seguintes
+            bibliografias:
           </p>
 
           <ul className="list-disc pl-6 space-y-2">
@@ -582,10 +582,10 @@ export default function Sobre() {
             </li>
           </ul>
           <p className="mb-4">
-            Obras ao qual a IA tomou referência durante o treinamento do modelo,
-            havendo contato com uma enorme quantidade de textos públicos,
-            resumos acadêmicos, catálogos, análises, artigos, enciclopédias e
-            discussões sobre essas obras:
+            As obras ao qual a IA tomou referência durante o treinamento do
+            modelo, havendo contato com uma enorme quantidade de textos
+            públicos, resumos acadêmicos, catálogos, análises, artigos,
+            enciclopédias e discussões sobre essas obras:
           </p>
           <ul className="list-disc pl-6 space-y-2">
             <li>
