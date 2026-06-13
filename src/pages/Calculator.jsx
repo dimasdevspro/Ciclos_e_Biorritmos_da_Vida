@@ -1,5 +1,8 @@
 // ================= FRONTEND (React App.jsx) =================
-import { useState } from "react";
+import { useState, useRef } from "react";
+import html2pdf from "html2pdf.js";
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 import {
   LineChart,
   Line,
@@ -53,7 +56,7 @@ const CustomTooltip = ({ active, payload }) => {
     const m = data.status?.intelectual;
 
     return (
-      <div className="bg-blue-200 p-3 border rounded shadow">
+      <div className="bg-blue-200 p-3 border rounded">
         <p>
           <strong>Data:</strong> {data.data}
         </p>
@@ -83,6 +86,9 @@ export default function Calculator() {
   const [ceu, setCeu] = useState(null);
   const [lua, setLua] = useState(null);
   const [aceite, setAceite] = useState(false);
+  const [downloadingPDF, setDownloadingPDF] = useState(false);
+  const resultadoRef = useRef(null);
+  const graficoRef = useRef(null);
 
   const calcular = async () => {
     setLoading(true);
@@ -162,6 +168,87 @@ export default function Calculator() {
     }
   };
 
+  const downloadPDF = async () => {
+    window.scrollTo(0, 0);
+
+    if (!resultadoRef.current) return;
+
+    try {
+      setDownloadingPDF(true);
+
+      const element = resultadoRef.current;
+
+      const options = {
+        margin: 10,
+
+        filename: `${resultado.nome}_ciclos_biorritmos.pdf`,
+
+        image: { type: "png", quality: 1 },
+
+        html2canvas: {
+          scale: 3,
+          useCORS: true,
+          backgroundColor: "#ffffff",
+          removeContainer: true,
+        },
+
+        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+
+        pagebreak: { mode: ["avoid-all", "css", "legacy"] },
+      };
+
+      await html2pdf().set(options).from(element).save();
+    } catch (error) {
+      console.error("Erro ao gerar PDF:", error);
+
+      alert("Erro ao gerar PDF. Tente novamente.");
+    } finally {
+      setDownloadingPDF(false);
+    }
+  };
+
+  const downloadGraficoPDF = async () => {
+    if (!graficoRef.current) return;
+
+    try {
+      const canvas = await html2canvas(graficoRef.current, {
+        scale: 3,
+        useCORS: true,
+      });
+
+      const imgData = canvas.toDataURL("image/png");
+
+      const pdf = new jsPDF("landscape", "mm", "a4");
+
+      const larguraPDF = pdf.internal.pageSize.getWidth();
+
+      const alturaPDF = pdf.internal.pageSize.getHeight();
+
+      const proporcao = canvas.width / canvas.height;
+
+      let larguraImg = larguraPDF - 20;
+
+      let alturaImg = larguraImg / proporcao;
+
+      if (alturaImg > alturaPDF - 20) {
+        alturaImg = alturaPDF - 20;
+
+        larguraImg = alturaImg * proporcao;
+      }
+
+      const x = (larguraPDF - larguraImg) / 2;
+
+      const y = (alturaPDF - alturaImg) / 2;
+
+      pdf.addImage(imgData, "PNG", x, y, larguraImg, alturaImg);
+
+      pdf.save(`grafico-${resultado.nome}.pdf`);
+    } catch (error) {
+      console.error("Erro ao gerar PDF do gráfico:", error);
+      alert("Erro ao gerar PDF do gráfico. Tente novamente.");
+    }
+  };
+
   const insight = resultado?.insight
     ? [
         resultado.insight.fisico,
@@ -237,203 +324,235 @@ export default function Calculator() {
           Seus dados são utilizados apenas para cálculo e não são armazenados.
         </p>
         {resultado && grafico.length > 0 && (
-          <div className="space-y-4 animate-fade-in">
-            {/* Cards de Resultado */}
-            <div className="mt-6 p-6 rounded-2xl shadow-md bg-blue-100 border-blue-100">
-              <h2 className="text-xl font-bold border-b pb-2">Resultado</h2>
+          <>
+            <div
+              ref={resultadoRef}
+              className="space-y-4 bg-blue-100 rounded-2xl opacity-100"
+            >
+              {/* Cards de Resultado */}
+              <div
+                className="mt-6 p-6 rounded-2xl bg-blue-100 border-blue-100"
+                style={{ breakInside: "avoid" }}
+              >
+                <h2 className="text-xl font-bold border-b pb-2">Resultado - Ciclos e Biorritmos - {hoje}</h2>
 
-              <p>
-                <strong>Nome:</strong> {resultado.nome}
-              </p>
-              <p>
-                <strong>Dias vividos:</strong> {resultado.diasVividos}
-              </p>
-              <p>
-                <strong>Anos vividos:</strong> {resultado.anosVividos}
-              </p>
-
-              {/* Cards de Dia/Hora AMORC */}
-              <h2 className="mt-6 font-semibold text-center">
-                📅 Dia / ⏰ Hora (AMORC)
-              </h2>
-              <div className="grid grid-cols-2 gap-4 mt-4">
-                <div className="p-4 bg-blue-200 rounded-xl">
-                  <p className="font-semibold">
-                    📅 Dia: {hoje} ({resultado.diaSemana})
-                  </p>
-                  <p>Planeta: {resultado.planetaDia}</p>
-                  <p>Nota: {resultado.notaDia}</p>
-                </div>
-
-                <div className="p-4 bg-blue-200 rounded-xl">
-                  <p className="font-semibold">
-                    ⏰ Hora: {new Date().toLocaleTimeString("pt-BR")}
-                  </p>
-                  <p>Planeta: {resultado.planetaHora}</p>
-                  <p>Nota: {resultado.notaHora}</p>
-                </div>
-              </div>
-
-              {/* Cards de Astronomia */}
-              <h2 className="mt-6 font-semibold text-center">
-                🔭 Céu atual (Astronomia)
-              </h2>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                {/* 🌍 Planetas */}
-                <div className="p-4 bg-blue-200 rounded-xl shadow">
-                  <p className="font-bold">🪐 Planetas visíveis no Horizonte</p>
-
-                  {!ceu && <p>Carregando...</p>}
-
-                  {ceu?.visiveis?.length > 0 ? (
-                    ceu.visiveis.map((p, i) => (
-                      <p key={i}>
-                        • {p.nome} — {p.altitude}°
-                      </p>
-                    ))
-                  ) : ceu ? (
-                    <p>Nenhum planeta visível agora</p>
-                  ) : null}
-                </div>
-
-                {/* 🌙 Lua */}
-                <div className="p-4 bg-blue-200 rounded-xl shadow">
-                  <p className="font-bold">🌙 Lua</p>
-
-                  {lua ? (
-                    <>
-                      <p>
-                        <strong>Fase:</strong> {lua.fase}
-                      </p>
-
-                      <p>
-                        <strong>Iluminação:</strong>{" "}
-                        {(lua.iluminacao * 100).toFixed(0)}%
-                      </p>
-
-                      {lua.moonrise && (
-                        <p>
-                          <strong>Nascer:</strong> {lua.moonrise}
-                        </p>
-                      )}
-
-                      {lua.moonset && (
-                        <p>
-                          <strong>Ocaso:</strong> {lua.moonset}
-                        </p>
-                      )}
-                    </>
-                  ) : (
-                    <p>Carregando...</p>
-                  )}
-                </div>
-
-                {/* 🌌 Fenômenos Astronômicos */}
-                <div className="md:col-span-2 p-4 bg-blue-200 rounded-xl shadow">
-                  <p className="font-bold text-lg mb-4">
-                    🌌 Fenômenos Astronômicos do Céu Atual
-                  </p>
-
-                  {!ceu ? (
-                    <p>Carregando...</p>
-                  ) : (
-                    <div className="overflow-x-auto">
-                      <table className="w-full border-collapse">
-                        <thead>
-                          <tr className="border-b border-blue-400">
-                            <th className="text-left py-2">Fenômeno</th>
-                            <th className="text-left py-2">Constelação</th>
-                          </tr>
-                        </thead>
-
-                        <tbody>
-                          <tr className="border-b border-blue-300">
-                            <td className="py-2">🌌 Constelação do Zênite</td>
-                            <td>{ceu?.zenite || "N/A"}</td>
-                          </tr>
-
-                          <tr className="border-b border-blue-300">
-                            <td className="py-2">🌅 Horizonte Leste</td>
-                            <td>{ceu?.horizonteLeste || "N/A"}</td>
-                          </tr>
-
-                          <tr className="border-b border-blue-300">
-                            <td className="py-2">🌇 Horizonte Oeste</td>
-                            <td>{ceu?.horizonteOeste || "N/A"}</td>
-                          </tr>
-
-                          <tr className="border-b border-blue-300">
-                            <td className="py-2">☀️ Constelação Culminante</td>
-                            <td>{ceu?.culminante || "N/A"}</td>
-                          </tr>
-
-                          <tr className="border-b border-blue-300">
-                            <td className="py-2">
-                              🍂 Constelação sazonal dominante
-                            </td>
-                            <td>{ceu?.sazonal || "N/A"}</td>
-                          </tr>
-
-                          <tr className="border-b border-blue-300">
-                            <td className="py-2">
-                              🧭 Constelações circumpolares - fixas
-                            </td>
-                            <td>
-                              {ceu?.circumpolares?.length > 0
-                                ? ceu.circumpolares.join(", ")
-                                : "N/A"}
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            {/* Insights */}
-            <div className="grid grid-cols-3 gap-4">
-              <div className="p-3 bg-blue-100 rounded">
-                <strong>Biorritmo Físico:</strong> {insight[0]?.tipo}
-              </div>
-
-              <div className="p-3 bg-blue-100 rounded">
-                <strong>Biorritmo Emocional:</strong> {insight[1]?.tipo}
-              </div>
-
-              <div className="p-3 bg-blue-100 rounded">
-                <strong>Biorritmo Intelectual:</strong> {insight[2]?.tipo}
-              </div>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-4 mt-6">
-              <div className="p-4 rounded-xl bg-blue-100 shadow transition-all hover:scale-105">
-                <p className="font-bold text-black-700 dark:text-black-300">
-                  ⚠️ Dias Críticos
+                <p>
+                  <strong>Nome:</strong> {resultado.nome}
                 </p>
-                {proximosCriticos?.map((d, i) => (
-                  <p key={i}>{d.data}</p>
-                ))}
-              </div>
-
-              <div className="p-4 rounded-xl bg-blue-100 shadow transition-all hover:scale-105">
-                <p className="font-bold text-black-700 dark:text-g-black-300">
-                  ✅ Melhores Dias
+                <p>
+                  <strong>Dias vividos:</strong> {resultado.diasVividos}
                 </p>
-                {diasPositivos?.map((d, i) => (
-                  <p key={i}>{d.data}</p>
-                ))}
+                <p>
+                  <strong>Anos vividos:</strong> {resultado.anosVividos}
+                </p>
+
+                {/* Cards de Dia/Hora AMORC */}
+                <h2 className="mt-6 font-semibold text-center">
+                  📅 Dia / ⏰ Hora (AMORC)
+                </h2>
+                <div className="grid grid-cols-2 gap-4 mt-4">
+                  <div className="p-4 bg-blue-200 rounded-xl">
+                    <p className="font-semibold">
+                      📅 Dia: {hoje} ({resultado.diaSemana})
+                    </p>
+                    <p>Planeta: {resultado.planetaDia}</p>
+                    <p>Nota: {resultado.notaDia}</p>
+                  </div>
+
+                  <div className="p-4 bg-blue-200 rounded-xl">
+                    <p className="font-semibold">
+                      ⏰ Hora: {new Date().toLocaleTimeString("pt-BR")}
+                    </p>
+                    <p>Planeta: {resultado.planetaHora}</p>
+                    <p>Nota: {resultado.notaHora}</p>
+                  </div>
+                </div>
+
+                {/* Insights */}
+                <div className="grid grid-cols-3 gap-4 mt-6">
+                  <div
+                    className="p-3 bg-blue-200 rounded"
+                    style={{ breakInside: "avoid" }}
+                  >
+                    <strong>Biorritmo Físico:</strong> {insight[0]?.tipo}
+                  </div>
+
+                  <div
+                    className="p-3 bg-blue-200 rounded"
+                    style={{ breakInside: "avoid" }}
+                  >
+                    <strong>Biorritmo Emocional:</strong> {insight[1]?.tipo}
+                  </div>
+
+                  <div
+                    className="p-3 bg-blue-200 rounded"
+                    style={{ breakInside: "avoid" }}
+                  >
+                    <strong>Biorritmo Intelectual:</strong> {insight[2]?.tipo}
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-4 mt-6">
+                  <div
+                    className="p-4 rounded-xl bg-blue-200 transition-all hover:scale-105"
+                    style={{ breakInside: "avoid" }}
+                  >
+                    <p className="font-bold text-black-700 dark:text-black-300">
+                      ⚠️ Dias Críticos
+                    </p>
+                    {proximosCriticos?.map((d, i) => (
+                      <p key={i}>{d.data}</p>
+                    ))}
+                  </div>
+
+                  <div
+                    className="p-4 rounded-xl bg-blue-200 transition-all hover:scale-105"
+                    style={{ breakInside: "avoid" }}
+                  >
+                    <p className="font-bold text-black-700 dark:text-g-black-300">
+                      ✅ Melhores Dias
+                    </p>
+                    {diasPositivos?.map((d, i) => (
+                      <p key={i}>{d.data}</p>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div style={{ breakBefore: "page" }}>
+                {/* Cards de Astronomia */}
+                <h2 className="mt-6 font-semibold text-center">
+                  🔭 Céu atual (Astronomia)
+                </h2>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                  {/* 🌍 Planetas */}
+                  <div className="p-4 bg-blue-200 rounded-xl ml-6">
+                    <p className="font-bold">
+                      🪐 Planetas visíveis no Horizonte
+                    </p>
+
+                    {!ceu && <p>Carregando...</p>}
+
+                    {ceu?.visiveis?.length > 0 ? (
+                      ceu.visiveis.map((p, i) => (
+                        <p key={i}>
+                          • {p.nome} — {p.altitude}°
+                        </p>
+                      ))
+                    ) : ceu ? (
+                      <p>Nenhum planeta visível agora</p>
+                    ) : null}
+                  </div>
+
+                  {/* 🌙 Lua */}
+                  <div className="p-4 bg-blue-200 rounded-xl mr-6">
+                    <p className="font-bold">🌙 Lua</p>
+
+                    {lua ? (
+                      <>
+                        <p>
+                          <strong>Fase:</strong> {lua.fase}
+                        </p>
+
+                        <p>
+                          <strong>Iluminação:</strong>{" "}
+                          {(lua.iluminacao * 100).toFixed(0)}%
+                        </p>
+
+                        {lua.moonrise && (
+                          <p>
+                            <strong>Nascer:</strong> {lua.moonrise}
+                          </p>
+                        )}
+
+                        {lua.moonset && (
+                          <p>
+                            <strong>Ocaso:</strong> {lua.moonset}
+                          </p>
+                        )}
+                      </>
+                    ) : (
+                      <p>Carregando...</p>
+                    )}
+                  </div>
+
+                  {/* 🌌 Fenômenos Astronômicos */}
+                  <div className="md:col-span-2 p-4 bg-blue-200 rounded-xl ml-6 mr-6 mb-6">
+                    <p className="font-bold text-lg mb-4">
+                      🌌 Fenômenos Astronômicos do Céu Atual
+                    </p>
+
+                    {!ceu ? (
+                      <p>Carregando...</p>
+                    ) : (
+                      <div className="overflow-x-auto">
+                        <table className="w-full border-collapse">
+                          <thead>
+                            <tr className="border-b border-blue-400">
+                              <th className="text-left py-2">Fenômeno</th>
+                              <th className="text-left py-2">Constelação</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                            <tr className="border-b border-blue-300">
+                              <td className="py-2">🌌 Constelação do Zênite</td>
+                              <td>{ceu?.zenite || "N/A"}</td>
+                            </tr>
+
+                            <tr className="border-b border-blue-300">
+                              <td className="py-2">🌅 Horizonte Leste</td>
+                              <td>{ceu?.horizonteLeste || "N/A"}</td>
+                            </tr>
+
+                            <tr className="border-b border-blue-300">
+                              <td className="py-2">🌇 Horizonte Oeste</td>
+                              <td>{ceu?.horizonteOeste || "N/A"}</td>
+                            </tr>
+
+                            <tr className="border-b border-blue-300">
+                              <td className="py-2">
+                                ☀️ Constelação Culminante
+                              </td>
+                              <td>{ceu?.culminante || "N/A"}</td>
+                            </tr>
+
+                            <tr className="border-b border-blue-300">
+                              <td className="py-2">
+                                🍂 Constelação sazonal dominante
+                              </td>
+                              <td>{ceu?.sazonal || "N/A"}</td>
+                            </tr>
+
+                            <tr className="border-b border-blue-300">
+                              <td className="py-2">
+                                🧭 Constelações circumpolares - fixas
+                              </td>
+                              <td>
+                                {ceu?.circumpolares?.length > 0
+                                  ? ceu.circumpolares.join(", ")
+                                  : "N/A"}
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
 
             {/* Gráfico */}
             <div
-              className="w-full h-[400px] md:h-[500px] mt-6 p-4 rounded-2xl shadow-md bg-blue-100 border-blue-100"
-              style={{ width: "100%", height: 450 }}
+              ref={graficoRef}
+              className="w-full h-[400px] md:h-[500px] mt-6 p-4 rounded-2xl bg-blue-200 border-blue-100 mx-auto"
+              style={{ width: "100%", minHeight: 560, margin: "1.5rem auto 0" }}
             >
-              <ResponsiveContainer>
+              <p className="font-bold text-lg mb-4">
+                      Gráfico de Biorritmos - 30 dias (Hoje = dia 0)
+                    </p>
+              <ResponsiveContainer width="100%" height={350}>
                 <LineChart data={grafico}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="dia" />
@@ -470,20 +589,41 @@ export default function Calculator() {
                   />
                 </LineChart>
               </ResponsiveContainer>
+
+              {/* Legenda */}
+              <div className="text-sm mt-4">
+                <p>
+                  <strong>Legenda:</strong>
+                </p>
+                <p>🟢 Verde = positivo</p>
+                <p>🔴 Vermelho = negativo</p>
+                <p>🟣 Roxo = crítico</p>
+                <p>🟡 Amarelo = precaução mínima</p>
+                <p>📱 Visualização no celular, gire na horizontal.</p>
+              </div>
             </div>
 
-            {/* Legenda */}
-            <div className="text-sm">
-              <p>
-                <strong>Legenda:</strong>
-              </p>
-              <p>🟢 Verde = positivo</p>
-              <p>🔴 Vermelho = negativo</p>
-              <p>🟣 Roxo = crítico</p>
-              <p>🟡 Amarelo = precaução mínima</p>
-              <p>📱 Visualização no celular, gire na horizontal.</p>
+            {/* Botão Download PDF */}
+            <div className="flex flex-col md:flex-row gap-4 justify-center mt-[2rem] mb-10">
+              <button
+                onClick={downloadPDF}
+                disabled={downloadingPDF}
+                className={`px-6 py-3 rounded-lg text-white font-semibold ${
+                  downloadingPDF
+                    ? "bg-gray-400"
+                    : "bg-blue-500 hover:bg-blue-600"
+                }`}
+              >
+                {downloadingPDF ? "Gerando PDF..." : "📄 Baixar Relatório"}
+              </button>
+              <button
+                onClick={downloadGraficoPDF}
+                className="px-6 py-3 rounded-lg text-white font-semibold bg-blue-500 hover:bg-blue-600"
+              >
+                📈 Baixar Gráfico
+              </button>
             </div>
-          </div>
+          </>
         )}
       </div>
     </div>
