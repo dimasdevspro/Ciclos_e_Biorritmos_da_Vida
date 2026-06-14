@@ -190,12 +190,19 @@ export default function Calculator() {
           useCORS: true,
           backgroundColor: "#ffffff",
           removeContainer: true,
+          logging: false,
         },
 
         jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
 
         pagebreak: { mode: ["avoid-all", "css", "legacy"] },
       };
+
+      await document.fonts.ready;
+
+      await new Promise((resolve) => requestAnimationFrame(resolve));
+
+      await new Promise((resolve) => setTimeout(resolve, 500));
 
       await html2pdf().set(options).from(element).save();
     } catch (error) {
@@ -334,7 +341,9 @@ export default function Calculator() {
                 className="mt-6 p-6 rounded-2xl bg-blue-100 border-blue-100"
                 style={{ breakInside: "avoid" }}
               >
-                <h2 className="text-xl font-bold border-b pb-2">Resultado - Ciclos e Biorritmos - {hoje}</h2>
+                <h2 className="text-xl font-bold border-b pb-2">
+                  Resultado - Ciclos e Biorritmos - {hoje}
+                </h2>
 
                 <p>
                   <strong>Nome:</strong> {resultado.nome}
@@ -550,8 +559,8 @@ export default function Calculator() {
               style={{ width: "100%", minHeight: 560, margin: "1.5rem auto 0" }}
             >
               <p className="font-bold text-lg mb-4">
-                      Gráfico de Biorritmos - 30 dias (Hoje = dia 0)
-                    </p>
+                Gráfico de Biorritmos - 30 dias (Hoje = dia 0)
+              </p>
               <ResponsiveContainer width="100%" height={350}>
                 <LineChart data={grafico}>
                   <CartesianGrid strokeDasharray="3 3" />

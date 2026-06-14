@@ -8,4 +8,12 @@ module.exports = {
         extend: {},
     },
     plugins: [],
+    safelist: [
+  "animate-fade-in",
+  "bg-blue-100",
+  "bg-blue-200",
+  "rounded-xl",
+  "shadow",
+],
 };
+
