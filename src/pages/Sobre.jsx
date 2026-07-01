@@ -8,12 +8,13 @@ export default function Sobre() {
           Astronomia, Ritmos da Vida e Tradição
         </h2>
         <p className="mb-4">
-          O *aplicativo “Ciclos e Biorritmos da Vida” nasceu da tentativa de
-          unir duas perspectivas que normalmente aparecem separadas: a tradição
-          simbólica antiga e a astronomia observacional moderna. Em vez de
-          tratar esses campos como inimigos, o projeto procura compreendê-los
-          como expressões diferentes de uma mesma busca humana: a tentativa de
-          perceber ordem, ritmo e significado no céu e na vida.
+          Desenvolvido pela empresa DevsPro Solution, o *aplicativo “Ciclos e
+          Biorritmos da Vida” nasceu da tentativa de unir duas perspectivas que
+          normalmente aparecem separadas: a tradição simbólica antiga e a
+          astronomia observacional moderna. Em vez de tratar esses campos como
+          inimigos, o projeto procura compreendê-los como expressões diferentes
+          de uma mesma busca humana: a tentativa de perceber ordem, ritmo e
+          significado no céu e na vida.
         </p>
         <p className="mb-4">
           Ao longo da história, praticamente todas as civilizações observaram o
