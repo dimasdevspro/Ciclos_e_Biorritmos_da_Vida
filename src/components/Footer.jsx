@@ -6,6 +6,10 @@ export default function Footer() {
       {/* FOOTER */}
       <footer className="bg-blue-100">
         <div className="max-w-5xl mx-auto p-4 text-center text-sm text-black-200">
+          <p className="mb-2">
+            © {new Date().getFullYear()} Ciclos e Biorritmos da Vida. Todos os
+            direitos reservados.
+          </p>
           Desenvolvido por{" "}
           <a
             href="https://devsprosolution.com.br"
@@ -15,7 +19,6 @@ export default function Footer() {
           >
             DevsPro Solution
           </a>{" "}
-          © {new Date().getFullYear()}
           <p className="mt-2">
             Siga-nos nas redes sociais:{" "}
             <a
