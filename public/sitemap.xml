@@ -1,45 +1,159 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-<url>
+    <!-- HOME -->
+    <url>
+        <loc>https://www.ciclosebiorritmos.com/</loc>
+        <lastmod>2026-07-01</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
 
-<loc>https://www.ciclosebiorritmos.com/</loc>
+    <!-- CALCULADORA -->
+    <url>
+        <loc>https://www.ciclosebiorritmos.com/calculadora</loc>
+        <lastmod>2026-07-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
 
-<priority>1.0</priority>
+    <!-- BLOG -->
+    <url>
+        <loc>https://www.ciclosebiorritmos.com/blog</loc>
+        <lastmod>2026-07-01</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
 
-</url>
+    <!-- SOBRE -->
+    <url>
+        <loc>https://www.ciclosebiorritmos.com/sobre</loc>
+        <lastmod>2026-07-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
 
-<url>
+    <!-- CONTATO -->
+    <url>
+        <loc>https://www.ciclosebiorritmos.com/contato</loc>
+        <lastmod>2026-07-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
 
-<loc>https://www.ciclosebiorritmos.com/calculadora</loc>
+    <!-- POLÍTICA DE PRIVACIDADE -->
+    <url>
+        <loc>https://www.ciclosebiorritmos.com/privacidade</loc>
+        <lastmod>2026-07-01</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
 
-<priority>0.9</priority>
+    <!-- TERMOS DE USO -->
+    <url>
+        <loc>https://www.ciclosebiorritmos.com/termosdeuso</loc>
+        <lastmod>2026-07-01</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
 
-</url>
+    <!-- AVISO LEGAL -->
+    <url>
+        <loc>https://www.ciclosebiorritmos.com/avisolegal</loc>
+        <lastmod>2026-07-01</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
 
-<url>
+    <!-- ========================= -->
+    <!-- ARTIGOS DO BLOG -->
+    <!-- Troque ID_ARTIGO_X pela ID real do Firestore -->
+    <!-- ========================= -->
 
-<loc>https://www.ciclosebiorritmos.com/blog</loc>
+    <url>
+        <loc>https://www.ciclosebiorritmos.com/post/PHn2L0mFHHdXzZtEkdI0</loc>
+        <lastmod>2026-07-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
 
-<priority>0.9</priority>
+    <url>
+        <loc>https://www.ciclosebiorritmos.com/post/SVNO6gCT1ZNnkwqqVQIq</loc>
+        <lastmod>2026-07-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
 
-</url>
+    <url>
+        <loc>https://www.ciclosebiorritmos.com/post/SJyfBtSMuaKIZA8ToG5v</loc>
+        <lastmod>2026-07-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
 
-<url>
+    <url>
+        <loc>https://www.ciclosebiorritmos.com/post/haxUpiyMxKD84P1JrUcB</loc>
+        <lastmod>2026-07-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
 
-<loc>https://www.ciclosebiorritmos.com/sobre</loc>
+    <url>
+        <loc>https://www.ciclosebiorritmos.com/post/zQE0WQuE8dZXPMKoGNI3</loc>
+        <lastmod>2026-07-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
 
-<priority>0.8</priority>
+    <url>
+        <loc>https://www.ciclosebiorritmos.com/post/IyHrmA5YzYiNDmH5Rwu3</loc>
+        <lastmod>2026-07-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
 
-</url>
+    <url>
+        <loc>https://www.ciclosebiorritmos.com/post/b3inLAP0MI1WiUKcjLKJ</loc>
+        <lastmod>2026-07-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
 
-<url>
+    <url>
+        <loc>https://www.ciclosebiorritmos.com/post/p0f2MR86uS4pkHl5zB6m</loc>
+        <lastmod>2026-07-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
 
-<loc>https://www.ciclosebiorritmos.com/contato</loc>
+    <url>
+        <loc>https://www.ciclosebiorritmos.com/post/Z1u8YRrROVWXwyJn3YOg</loc>
+        <lastmod>2026-07-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
 
-<priority>0.7</priority>
+    <url>
+        <loc>https://www.ciclosebiorritmos.com/post/l85ahxwoY6eJuu84F5uI</loc>
+        <lastmod>2026-07-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
 
-</url>
+    <url>
+        <loc>https://www.ciclosebiorritmos.com/post/Kt2KnHH2dP0je7x5qzeQ</loc>
+        <lastmod>2026-07-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.ciclosebiorritmos.com/post/8KW8X2jsYcmdPiJJNr6N</loc>
+        <lastmod>2026-07-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
 
 </urlset>
