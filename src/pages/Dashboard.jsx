@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import { useAuthValue } from "../contexts/AuthContext";
 import { useFetchDocuments } from "../hooks/useFetchDocuments";
+import { useDeleteDocument } from "../hooks/useDeleteDocument";
 
 export default function Dashboard() {
   const { user } = useAuthValue();
@@ -11,11 +12,16 @@ export default function Dashboard() {
 
   const { documents: posts, loading } = useFetchDocuments("posts", null, uid);
 
+  const { deleteDocument } = useDeleteDocument("posts");
+
   return (
     <>
       <Navbar2 />
       <div className="container mx-auto px-4 py-8 bg-blue-50 min-h-screen">
-        <p className="text-lg mb-8">Bem-vindo ao Blog.</p>
+        <h1 className="text-3xl font-bold mb-4">Dashboard</h1>
+        <p className="text-lg mb-8">
+          Bem-vindo ao painel de administração do Blog.
+        </p>
         {loading && <p className="text-lg">Carregando...</p>}
         {posts.length === 0 && !loading && (
           <div>
@@ -39,7 +45,7 @@ export default function Dashboard() {
             {posts.map((post) => (
               <div
                 key={post.id}
-                className="flex justify-between items-center border-blue-50 w-[100%] py-2 px-2 pr-20"
+                className="flex justify-between items-center border-blue-50 w-[100%] py-2 px-2"
               >
                 <p className="text-lg">{post.title}</p>
                 <div className="flex flex-row justify-between gap-2">
@@ -49,6 +55,18 @@ export default function Dashboard() {
                   >
                     Ver
                   </Link>
+                  <Link
+                    to={`/edit-post/${post.id}`}
+                    className="text-lg bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+                  >
+                    Editar
+                  </Link>
+                  <button
+                    onClick={() => deleteDocument(post.id)}
+                    className="text-lg bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
+                  >
+                    Excluir
+                  </button>
                 </div>
               </div>
             ))}

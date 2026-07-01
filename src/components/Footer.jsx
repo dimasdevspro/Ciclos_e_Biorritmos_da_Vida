@@ -35,11 +35,25 @@ export default function Footer() {
               <AiFillLinkedin className="inline" size={20} />
             </a>
           </p>
-          <p className="mt-2">
-            <a href="/privacidade" className="hover:underline text-blue-500">
-              Política de Privacidade
-            </a>
-          </p>
+          <div className="mt-3 flex flex-wrap justify-center items-center gap-2 sm:gap-3 text-center">
+            <p className="m-0">
+              <a href="/privacidade" className="hover:underline text-blue-500">
+                Política de Privacidade
+              </a>
+            </p>
+            <span className="text-gray-500 select-none">•</span>
+            <p className="m-0">
+              <a href="/termosdeuso" className="hover:underline text-blue-500">
+                Termos de Uso
+              </a>
+            </p>
+            <span className="text-gray-500 select-none">•</span>
+            <p className="m-0">
+              <a href="/avisolegal" className="hover:underline text-blue-500">
+                Aviso Legal
+              </a>
+            </p>
+          </div>
         </div>
       </footer>
     </div>
