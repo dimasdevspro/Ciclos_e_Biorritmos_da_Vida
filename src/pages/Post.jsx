@@ -22,6 +22,24 @@ export default function Post() {
               />
             )}
             <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
+            <p className="text-gray-600 mb-4">
+              Publicado em:{" "}
+              {post.createdAt.toDate().toLocaleDateString("pt-BR", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+              })}
+            </p>
+            {post.updatedAt && (
+              <p className="text-gray-600 mb-4">
+                Atualizado em:{" "}
+                {post.updatedAt.toDate().toLocaleDateString("pt-BR", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                })}
+              </p>
+            )}
             <div>
               {post.body.blocks.map((block, index) => {
                 switch (block.type) {

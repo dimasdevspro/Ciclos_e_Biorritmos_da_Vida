@@ -1,3 +1,4 @@
+import SEO from "../seo/SEO";
 import Navbar2 from "../components/Navbar2";
 
 import { Link } from "react-router-dom";
@@ -13,6 +14,12 @@ export default function Dashboard() {
 
   return (
     <>
+      <SEO
+        title="Artigos"
+        description="Leia artigos sobre ciclos, biorritmos, astronomia e ciência."
+        keywords="artigos ciclos, biorritmo, astronomia, ciência"
+        url="https://www.ciclosebiorritmos.com/blog"
+      />
       <Navbar2 />
       <div className="container mx-auto px-4 py-8 bg-blue-50 min-h-screen">
         <p className="text-lg mb-8">Bem-vindo ao Blog.</p>
