@@ -12,6 +12,7 @@
     "@editorjs/quote": "^2.7.6",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/user-event": "^13.5.0",
+    "dotenv": "^17.4.2",
     "firebase": "^12.14.0",
     "html2canvas": "^1.4.1",
     "html2pdf.js": "^0.14.0",

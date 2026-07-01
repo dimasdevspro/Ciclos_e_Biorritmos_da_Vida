@@ -3,13 +3,14 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
+// Do not import `dotenv` in the frontend. Use build-time environment variables instead.
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBu8mG1HUyXIYWocukbXFQjakN0xAU0Yig",
+  apiKey: process.env.REACT_APP_APIKEY,
   authDomain: "ciclos-e-biorritmos.firebaseapp.com",
   projectId: "ciclos-e-biorritmos",
   storageBucket: "ciclos-e-biorritmos.firebasestorage.app",
