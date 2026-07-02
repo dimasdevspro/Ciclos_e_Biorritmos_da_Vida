@@ -14,6 +14,7 @@
     "@testing-library/user-event": "^13.5.0",
     "dotenv": "^17.4.2",
     "firebase": "^12.14.0",
+    "firebase-admin": "^14.1.0",
     "html2canvas": "^1.4.1",
     "html2pdf.js": "^0.14.0",
     "jspdf": "^4.2.1",
@@ -28,7 +29,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm run sitemap && react-scripts build",
+    "sitemap": "node scripts/generate-sitemap.js",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "coverage": "vitest run --coverage",
