@@ -2,7 +2,6 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "dependencies": {
     "@editorjs/delimiter": "^1.4.2",
     "@editorjs/editorjs": "^2.31.6",
