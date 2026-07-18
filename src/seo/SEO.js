@@ -4,8 +4,8 @@ export default function SEO({
   title,
   description,
   keywords,
-  image = "https://www.ciclosebiorritmos.com/logo512.png",
-  url = "https://www.ciclosebiorritmos.com",
+  image = "https://ciclosebiorritmos.com/logo512.png",
+  url = "https://ciclosebiorritmos.com",
 }) {
   return (
     <Helmet>

@@ -20,7 +20,7 @@ export default function Post() {
             : ""
         }
         keywords={post ? post.tagsArray.join(", ") : ""}
-        url={`https://www.ciclosebiorritmos.com/post/${id}`}
+        url={`https://ciclosebiorritmos.com/post/${id}`}
         image={
           post?.imageUrl || "https://www.ciclosebiorritmos.com/logo512.png"
         }

@@ -2,4 +2,4 @@ User-agent: *
 
 Allow: /
 
-Sitemap: https://www.ciclosebiorritmos.com/sitemap.xml
+Sitemap: https://ciclosebiorritmos.com/sitemap.xml
