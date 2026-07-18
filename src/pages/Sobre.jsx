@@ -6,7 +6,7 @@ export default function Sobre() {
         title="Sobre"
         description="Saiba mais sobre o projeto Ciclos e Biorritmos da Vida."
         keywords="sobre, ciclos, biorritmos"
-        url="https://www.ciclosebiorritmos.com/sobre"
+        url="https://ciclosebiorritmos.com/sobre"
       />
       <div className="bg-blue-50 flex flex-col min-h-screen p-6">
         <h1 className="text-2xl font-bold mb-4">Sobre</h1>

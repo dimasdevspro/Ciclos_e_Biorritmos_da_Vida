@@ -1,3 +1,4 @@
+import SEO from "../seo/SEO";
 import Navbar2 from "../components/Navbar2";
 
 import { Link } from "react-router-dom";
@@ -16,6 +17,12 @@ export default function Dashboard() {
 
   return (
     <>
+      <SEO
+        title="Dashboard para administração do Blog"
+        description="Página para administração do blog."
+        keywords="biorritmo, biorritmo online, biorritmo físico, biorritmo emocional"
+        url="https://ciclosebiorritmos.com/dashboard"
+      />
       <Navbar2 />
       <div className="container mx-auto px-4 py-8 bg-blue-50 min-h-screen">
         <h1 className="text-3xl font-bold mb-4">Dashboard</h1>

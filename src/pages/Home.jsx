@@ -7,7 +7,7 @@ export default function Home() {
         title="Ciclos e Biorritmos | Biorritmo e Autoconhecimento"
         description="Descubra gratuitamente seus biorritmos e ferramentas de autoconhecimento."
         keywords="biorritmo, autoconhecimento, ciclos da vida"
-        url="https://www.ciclosebiorritmos.com"
+        url="https://ciclosebiorritmos.com"
       />
       <div className="container mx-auto bg-blue-50 px-4 py-8 min-h-screen">
         <h1 className="text-4xl font-bold mb-4">

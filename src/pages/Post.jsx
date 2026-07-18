@@ -21,9 +21,7 @@ export default function Post() {
         }
         keywords={post ? post.tagsArray.join(", ") : ""}
         url={`https://ciclosebiorritmos.com/post/${id}`}
-        image={
-          post?.imageUrl || "https://www.ciclosebiorritmos.com/logo512.png"
-        }
+        image={post?.imageUrl || "https://ciclosebiorritmos.com/logo512.png"}
       />
       <Navbar2 />
       <div className="container mx-auto px-4 py-8 bg-blue-50 min-h-screen">

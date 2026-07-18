@@ -1,19 +1,45 @@
 import SEO from "../seo/SEO";
+
+import { Link } from "react-router-dom";
+
 export default function Contato() {
   return (
     <>
       <SEO
         title="Contato"
         description="Entre em contato com a equipe do Ciclos e Biorritmos."
-        keywords="contato"
-        url="https://www.ciclosebiorritmos.com/contato"
+        keywords="contato, suporte, astronomia, biorritmos, ciclos, calculadora de biorritmos"
+        url="https://ciclosebiorritmos.com/contato"
       />
       <div className="container mx-auto px-4 py-8 bg-blue-50 min-h-screen">
-        <h1 className="text-3xl font-bold mb-4">Contato</h1>
-        <p className="mb-4">
-          Entre em contato conosco através dos canais abaixo:
+        <h1 className="text-3xl font-bold mb-4">Entre em Contato</h1>
+
+        <p className="mb-2 leading-8">
+          O projeto <strong>Ciclos e Biorritmos</strong> busca divulgar
+          conteúdos educativos sobre astronomia, ciclos naturais, biorritmos e
+          autoconhecimento, oferecendo também uma calculadora baseada em modelos
+          matemáticos tradicionais.
         </p>
+
+        <p className="mb-2 leading-8">
+          Caso tenha dúvidas sobre os cálculos, sugestões de novos artigos,
+          queira relatar algum problema técnico ou simplesmente compartilhar uma
+          opinião, ficaremos felizes em receber sua mensagem.
+        </p>
+
+        <p className="mb-2 leading-8">
+          Todas as mensagens são analisadas e respondidas sempre que possível.
+        </p>
+
+        <p className="mb-2 leading-8">E se ainda possuir dúvidas?</p>
+
+        <p className="mb-2 leading-8">
+          Consulte nossos artigos no Blog ou utilize a Calculadora para conhecer
+          seus ciclos biológicos.
+        </p>
+
         <ul className="list-disc list-inside mb-4">
+          <li>Horário de Atendimento: Segunda a Sexta, das 09hs às 18hs.</li>
           <li>
             Email:{" "}
             <a href="mailto:dimasdevspro@gmail.com">dimasdevspro@gmail.com</a>
@@ -39,13 +65,22 @@ export default function Contato() {
                 title="Localização no Google Maps"
                 className="w-full h-full"
                 style={{ border: 0 }}
-                allowfullscreen=""
+                allowFullscreen=""
                 loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
+                referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
             </div>
           </li>
         </ul>
+        <div className="flex flex-col justify-center items-center">
+          <Link className="hover:text-blue-500" to="/blog">
+            Conheça nossos artigos →
+          </Link>
+
+          <Link className="hover:text-blue-500" to="/calculadora">
+            Ir para a Calculadora →
+          </Link>
+        </div>
       </div>
     </>
   );

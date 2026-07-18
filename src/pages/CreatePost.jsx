@@ -1,3 +1,5 @@
+import SEO from "../seo/SEO";
+
 import Navbar2 from "../components/Navbar2";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
@@ -123,6 +125,12 @@ export default function CreatePost() {
 
   return (
     <>
+      <SEO
+        title="Criar Post"
+        description="Esta página administrativa é para criação de posts."
+        keywords="biorritmo, biorritmo online, biorritmo físico, biorritmo emocional"
+        url="https://ciclosebiorritmos.com/create-post"
+      />
       <Navbar2 />
       <div className="container mx-auto px-4 py-8 bg-blue-50 min-h-screen">
         <h1 className="text-3xl font-bold mb-4">Criar Novo Post</h1>

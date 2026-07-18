@@ -272,8 +272,8 @@ export default function Calculator() {
       <SEO
         title="Calculadora de Biorritmo"
         description="Calcule gratuitamente seus biorritmos físico, emocional e intelectual."
-        keywords="biorritmo,biorritmo online,biorritmo físico,biorritmo emocional"
-        url="https://www.ciclosebiorritmos.com/calculadora"
+        keywords="biorritmo, biorritmo online, biorritmo físico, biorritmo emocional"
+        url="https://ciclosebiorritmos.com/calculadora"
       />
       <div className="max-w-7xl mx-auto">
         <div className="min-h-screen bg-blue-50 p-4 md:p-8">
