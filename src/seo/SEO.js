@@ -1,74 +1,53 @@
 import { Helmet } from "react-helmet-async";
 
 export default function SEO({
-
-    title,
-    description,
-    keywords,
-    image = "https://www.ciclosebiorritmos.com/logo512.png",
-    url = "https://www.ciclosebiorritmos.com",
-
+  title,
+  description,
+  keywords,
+  image = "https://www.ciclosebiorritmos.com/logo512.png",
+  url = "https://www.ciclosebiorritmos.com",
 }) {
+  return (
+    <Helmet>
+      <title>{title}</title>
 
-    return (
+      <meta name="description" content={description} />
 
-        <Helmet>
+      <meta name="keywords" content={keywords} />
 
-            <title>{title}</title>
+      <meta name="robots" content="index,follow,max-image-preview:large" />
 
-            <meta
-                name="description"
-                content={description}
-            />
+      <meta name="author" content="Dimas Alves Pereira" />
 
-            <meta
-                name="keywords"
-                content={keywords}
-            />
+      <meta property="article:author" content="Dimas Alves Pereira" />
 
-            <meta
-                name="robots"
-                content="index,follow,max-image-preview:large"
-            />
+      <link rel="canonical" href={url} />
 
-            <meta
-                name="author"
-                content="Ciclos e Biorritmos"
-            />
+      {/* Open Graph */}
 
-            <link
-                rel="canonical"
-                href={url}
-            />
+      <meta property="og:type" content="website" />
 
-            {/* Open Graph */}
+      <meta property="og:title" content={title} />
 
-            <meta property="og:type" content="website"/>
+      <meta property="og:description" content={description} />
 
-            <meta property="og:title" content={title}/>
+      <meta property="og:image" content={image} />
 
-            <meta property="og:description" content={description}/>
+      <meta property="og:url" content={url} />
 
-            <meta property="og:image" content={image}/>
+      <meta property="og:site_name" content="Ciclos e Biorritmos" />
 
-            <meta property="og:url" content={url}/>
+      <meta property="og:locale" content="pt_BR" />
 
-            <meta property="og:site_name" content="Ciclos e Biorritmos"/>
+      {/* Twitter */}
 
-            <meta property="og:locale" content="pt_BR"/>
+      <meta name="twitter:card" content="summary_large_image" />
 
-            {/* Twitter */}
+      <meta name="twitter:title" content={title} />
 
-            <meta name="twitter:card" content="summary_large_image"/>
+      <meta name="twitter:description" content={description} />
 
-            <meta name="twitter:title" content={title}/>
-
-            <meta name="twitter:description" content={description}/>
-
-            <meta name="twitter:image" content={image}/>
-
-        </Helmet>
-
-    );
-
+      <meta name="twitter:image" content={image} />
+    </Helmet>
+  );
 }

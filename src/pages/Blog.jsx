@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useAuthValue } from "../contexts/AuthContext";
 import { useFetchDocuments } from "../hooks/useFetchDocuments";
 
-export default function Dashboard() {
+export default function Blog() {
   const { user } = useAuthValue();
   const uid = user?.uid;
 

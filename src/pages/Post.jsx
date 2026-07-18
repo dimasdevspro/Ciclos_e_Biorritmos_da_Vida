@@ -1,3 +1,4 @@
+import SEO from "../seo/SEO";
 import Navbar2 from "../components/Navbar2";
 
 import { useParams } from "react-router-dom";
@@ -9,6 +10,21 @@ export default function Post() {
 
   return (
     <>
+      <SEO
+        title={post ? `${post.title} | Ciclos e Biorritmos` : "Carregando..."}
+        description={
+          post
+            ? post.body.blocks
+                ?.find((b) => b.type === "paragraph")
+                ?.data.text.slice(0, 160) || ""
+            : ""
+        }
+        keywords={post ? post.tagsArray.join(", ") : ""}
+        url={`https://www.ciclosebiorritmos.com/post/${id}`}
+        image={
+          post?.imageUrl || "https://www.ciclosebiorritmos.com/logo512.png"
+        }
+      />
       <Navbar2 />
       <div className="container mx-auto px-4 py-8 bg-blue-50 min-h-screen">
         {loading && <p className="text-lg">Carregando post...</p>}
