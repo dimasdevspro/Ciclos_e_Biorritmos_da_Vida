@@ -1,12 +1,13 @@
 import SEO from "../seo/SEO";
 import Navbar2 from "../components/Navbar2";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuthValue } from "../contexts/AuthContext";
 import { useUpdateDocument } from "../hooks/useUpdateDocument";
 import { useFetchDocument } from "../hooks/useFetchDocument";
 import { storage } from "../firebase/config";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
 import { Timestamp } from "firebase/firestore";
 
 // EditorJS
@@ -14,7 +15,8 @@ import EditorJS from "@editorjs/editorjs";
 import Header from "@editorjs/header";
 import List from "@editorjs/list";
 import Quote from "@editorjs/quote";
-// REMOVIDO: import Paragraph from "@editorjs/paragraph";
+import ImageTool from "@editorjs/image";
+import Paragraph from "@editorjs/paragraph";
 
 export default function EditPost() {
   const { id } = useParams();
@@ -43,6 +45,29 @@ export default function EditPost() {
   const navigate = useNavigate();
   const { user } = useAuthValue();
 
+  const storageImageText = getStorage();
+
+  const uploadImage = useCallback(
+    async (file) => {
+      const imageRef = ref(
+        storageImageText,
+        `posts/${Date.now()}_${file.name}`,
+      );
+
+      await uploadBytes(imageRef, file);
+
+      const url = await getDownloadURL(imageRef);
+
+      return {
+        success: 1,
+        file: {
+          url,
+        },
+      };
+    },
+    [storageImageText],
+  );
+
   useEffect(() => {
     if (!body || isInitialized.current) return;
 
@@ -54,8 +79,20 @@ export default function EditPost() {
 
       tools: {
         header: Header,
+        paragraph: Paragraph,
         list: List,
         quote: Quote,
+
+        image: {
+          class: ImageTool,
+          config: {
+            uploader: {
+              uploadByFile(file) {
+                return uploadImage(file);
+              },
+            },
+          },
+        },
       },
 
       placeholder: "Escreva seu artigo aqui...",
@@ -72,7 +109,7 @@ export default function EditPost() {
         isInitialized.current = false;
       }
     };
-  }, [body]);
+  }, [body, uploadImage]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

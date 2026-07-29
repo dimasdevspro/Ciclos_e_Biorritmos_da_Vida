@@ -98,6 +98,23 @@ export default function Post() {
                       </ul>
                     );
 
+                  case "image":
+                    return (
+                      <figure key={index} className="my-6">
+                        <img
+                          src={block.data.file.url}
+                          alt={block.data.caption || post.title}
+                          className="rounded-lg mx-auto"
+                        />
+
+                        {block.data.caption && (
+                          <figcaption className="text-center text-sm text-gray-600 mt-2">
+                            {block.data.caption}
+                          </figcaption>
+                        )}
+                      </figure>
+                    );
+
                   default:
                     return null;
                 }

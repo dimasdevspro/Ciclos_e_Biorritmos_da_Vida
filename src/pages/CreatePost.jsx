@@ -1,12 +1,12 @@
 import SEO from "../seo/SEO";
 
 import Navbar2 from "../components/Navbar2";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthValue } from "../contexts/AuthContext";
 import { useInsertDocument } from "../hooks/useInsertDocument";
 import { storage } from "../firebase/config";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL, getStorage } from "firebase/storage";
 import { Timestamp } from "firebase/firestore";
 
 // EditorJS
@@ -14,7 +14,8 @@ import EditorJS from "@editorjs/editorjs";
 import Header from "@editorjs/header";
 import List from "@editorjs/list";
 import Quote from "@editorjs/quote";
-// REMOVIDO: import Paragraph from "@editorjs/paragraph";
+import Paragraph from "@editorjs/paragraph";
+import ImageTool from "@editorjs/image";
 
 export default function CreatePost() {
   const [title, setTitle] = useState("");
@@ -30,6 +31,29 @@ export default function CreatePost() {
   const { user } = useAuthValue();
   console.log("CreatePost user:", user);
 
+  const storageImageText = getStorage();
+
+  const uploadImage = useCallback(
+    async (file) => {
+      const imageRef = ref(
+        storageImageText,
+        `posts/${Date.now()}_${file.name}`,
+      );
+
+      await uploadBytes(imageRef, file);
+
+      const url = await getDownloadURL(imageRef);
+
+      return {
+        success: 1,
+        file: {
+          url,
+        },
+      };
+    },
+    [storageImageText],
+  );
+
   useEffect(() => {
     // Garante que o editor só seja criado uma única vez
     if (!isInitialized.current) {
@@ -39,9 +63,19 @@ export default function CreatePost() {
         holder: "editorjs",
         tools: {
           header: Header,
+          paragraph: Paragraph,
           list: List,
           quote: Quote,
-          // REMOVIDO: paragraph: Paragraph (O Editor.js já faz isso nativamente)
+          image: {
+            class: ImageTool,
+            config: {
+              uploader: {
+                uploadByFile(file) {
+                  return uploadImage(file);
+                },
+              },
+            },
+          },
         },
         placeholder: "Escreva seu artigo aqui...",
         onReady: () => {
@@ -60,7 +94,7 @@ export default function CreatePost() {
         isInitialized.current = false;
       }
     };
-  }, []);
+  }, [uploadImage]);
 
   const handleSubmit = async (e) => {
     console.log("User no submit:", user);
