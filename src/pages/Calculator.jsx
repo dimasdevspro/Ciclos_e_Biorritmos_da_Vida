@@ -19,9 +19,9 @@ import {
 const CustomDot = (props, tipo) => {
   const { cx, cy, payload } = props;
 
-  if (!payload || !payload.status) return null; // 🛑 PROTEÇÃO
+  if (!payload || !payload.insight) return null; // 🛑 PROTEÇÃO
 
-  const status = payload.status[tipo];
+  const status = payload.insight[tipo];
 
   if (!status) return null;
 
@@ -52,9 +52,9 @@ const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
 
-    const f = data.status?.fisico;
-    const e = data.status?.emocional;
-    const m = data.status?.intelectual;
+    const f = data.insight?.fisico;
+    const e = data.insight?.emocional;
+    const m = data.insight?.intelectual;
 
     return (
       <div className="bg-blue-200 p-3 border rounded">
@@ -107,17 +107,14 @@ export default function Calculator() {
     };
 
     try {
-      const res = await fetch(
-        "https://ciclosebiorritmosdavidabackend.vercel.app/calcular",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            nome,
-            nascimento: formatarDataParaISO(nascimento),
-          }),
-        },
-      );
+      const res = await fetch("http://localhost:3001/calcular", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nome,
+          nascimento: formatarDataParaISO(nascimento),
+        }),
+      });
 
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
@@ -135,12 +132,17 @@ export default function Calculator() {
 
       // 🟢 melhores dias
       const positivos = (data?.grafico || [])
-        .filter(
-          (item) =>
-            item.status?.fisico?.tipo === "positivo" &&
-            item.status?.emocional?.tipo === "positivo" &&
-            item.status?.intelectual?.tipo === "positivo",
-        )
+        .filter((item) => {
+          const insights = Object.values(item.insight || {});
+          const quantidadePositiva = insights.filter(
+            (insight) => insight.tipo === "positivo",
+          ).length;
+          const possuiCritico = insights.some(
+            (insight) => insight.tipo === "critico",
+          );
+
+          return item.dia > 0 && quantidadePositiva >= 2 && !possuiCritico;
+        })
         .slice(0, 3);
 
       setProximosCriticos(criticos);
@@ -257,11 +259,11 @@ export default function Calculator() {
     }
   };
 
-  const insight = resultado?.insight
+  const insight = resultado?.resultado?.insight
     ? [
-        resultado.insight.fisico,
-        resultado.insight.emocional,
-        resultado.insight.intelectual,
+        resultado.resultado.insight.fisico,
+        resultado.resultado.insight.emocional,
+        resultado.resultado.insight.intelectual,
       ]
     : ["-", "-", "-"];
 
@@ -584,7 +586,7 @@ export default function Calculator() {
                     <Legend />
 
                     {/* Linha HOJE */}
-                    <ReferenceLine x={1} stroke="black" strokeDasharray="3 3" />
+                    <ReferenceLine x={0} stroke="black" strokeDasharray="3 3" />
 
                     <Line
                       type="monotone"
