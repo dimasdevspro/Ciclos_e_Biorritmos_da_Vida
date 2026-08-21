@@ -107,14 +107,17 @@ export default function Calculator() {
     };
 
     try {
-      const res = await fetch("http://localhost:3001/calcular", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          nome,
-          nascimento: formatarDataParaISO(nascimento),
-        }),
-      });
+      const res = await fetch(
+        "https://ciclosebiorritmosdavidabackend.vercel.app/calcular",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            nome,
+            nascimento: formatarDataParaISO(nascimento),
+          }),
+        },
+      );
 
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
@@ -356,13 +359,15 @@ export default function Calculator() {
                   </h2>
 
                   <p>
-                    <strong>Nome:</strong> {resultado.nome}
+                    <strong>Nome:</strong> {resultado.resultado.nome}
                   </p>
                   <p>
-                    <strong>Dias vividos:</strong> {resultado.diasVividos}
+                    <strong>Dias vividos:</strong>{" "}
+                    {resultado.resultado.diasVividos}
                   </p>
                   <p>
-                    <strong>Anos vividos:</strong> {resultado.anosVividos}
+                    <strong>Anos vividos:</strong>{" "}
+                    {resultado.resultado.anosVividos}
                   </p>
 
                   {/* Cards de Dia/Hora AMORC */}
